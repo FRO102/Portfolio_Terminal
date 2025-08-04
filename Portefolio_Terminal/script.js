@@ -16,13 +16,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 return output;
             }
         },
-        clear: {
-            description: "Clear the terminal",
-            execute: () => {
-                commandOutput.innerHTML = '';
-                return '';
-            }
-        },
         about: {
             description: "Show about information",
             execute: () => {
@@ -135,10 +128,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     <div class="mb-4">
                         <div class="text-green-400">$ contact</div>
                         <div class="ml-4">
-                            <div class="flex items-center mb-2">
-                                <i class="fas fa-phone-alt text-cyan-400 mr-2"></i>
-                                <span class="text-gray-300">(+351) 914989348</span>
-                            </div>
                             <div class="flex items-center mb-2">
                                 <i class="fas fa-envelope text-cyan-400 mr-2"></i>
                                 <span class="text-gray-300">froliveira10213@sapo.pt</span>
