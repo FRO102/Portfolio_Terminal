@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terminal Portfolio - Frederico Oliveira</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+    <div class="terminal w-full max-w-4xl h-[80vh] flex flex-col">
+        <!-- Title Bar -->
+        <div class="title-bar flex items-center justify-between px-4 py-2">
+            <div class="flex items-center space-x-2">
+                <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                <div class="w-3 h-3 rounded-full bg-green-500"></div>
+            </div>
+            <div class="text-sm text-gray-300">terminal_portfolio --user=visitor</div>
+            <div class="w-8"></div>
+        </div>
+        
+        <!-- Terminal Content -->
+        <div class="flex-1 p-4 overflow-y-auto" id="terminal-content">
+            <div class="mb-4">
+                <div class="typewriter text-xl font-bold text-cyan-400 mb-2">Welcome to Frederico Oliveira's Portfolio</div>
+                <div class="text-cyan-300 mb-4">Type 'help' to see available commands</div>
+            </div>
+            
+            <!-- Initial output -->
+            <div id="initial-output">
+                <div class="mb-4">
+                    <div class="text-green-400">$ whoami</div>
+                    <div class="ml-4">
+                        <h1 class="text-2xl font-bold text-cyan-400 mb-1">Frederico Oliveira</h1>
+                        <p class="text-gray-300">Computer Engineering Student | Systems Administration</p>
+                        <div class="mt-2 text-gray-400 text-sm">
+                            <p><i class="fas fa-phone-alt mr-2"></i> (+351) 914989348</p>
+                            <p><i class="fas fa-envelope mr-2"></i> froliveira10213@sapo.pt</p>
+                            <p><i class="fas fa-map-marker-alt mr-2"></i> 2415-030 Leiria, Portugal</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mb-4">
+                    <div class="text-green-400">$ cat about.txt</div>
+                    <div class="ml-4 text-gray-300">
+                        <p class="mb-2">Computer Engineering student, currently in the 3rd year.</p>
+                        <p class="mb-2">Proactive, analytical and focused on efficient solutions.</p>
+                        <p>Enthusiastic about IT systems and fascinated by systems administration, services and infrastructures.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Dynamic output will be inserted here -->
+            <div id="command-output"></div>
+            
+            <!-- Command Input -->
+            <div class="command-line flex items-center mt-4 p-2">
+                <span class="text-green-400 mr-2">$</span>
+                <input type="text" id="command-input" class="flex-1 bg-transparent outline-none text-white" autocomplete="off" autofocus>
+                <span class="blinking-cursor ml-1">|</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

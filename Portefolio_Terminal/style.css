@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600;700&display=swap');
+
+body {
+    font-family: 'Source Code Pro', monospace;
+    background-color: #1a1a1a;
+    color: #f0f0f0;
+    overflow-x: hidden;
+}
+
+.terminal {
+    background-color: rgba(0, 0, 0, 0.85);
+    border-radius: 8px;
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.2);
+    border: 1px solid rgba(0, 255, 255, 0.3);
+}
+
+.title-bar {
+    background: linear-gradient(to right, #333333, #222222);
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.blinking-cursor {
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+.command-line {
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+}
+
+.typewriter {
+    overflow: hidden;
+    border-right: 2px solid #00ffff;
+    white-space: nowrap;
+    animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: #00ffff; }
+}
+
+.glow-text {
+    text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff;
+}
+
+.skill-bar {
+    background: linear-gradient(90deg, #00ffff, #0088ff);
+    height: 6px;
+    border-radius: 3px;
+}
+
+.badge {
+    display: inline-block;
+    padding: 0.25em 0.4em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.25rem;
+    background-color: #2d3748;
+}
