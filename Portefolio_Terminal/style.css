@@ -20,10 +20,6 @@ body {
     border-top-right-radius: 8px;
 }
 
-.blinking-cursor {
-    animation: blink 1s infinite;
-}
-
 @keyframes blink {
     0%, 100% { opacity: 1; }
     50% { opacity: 0; }
@@ -48,7 +44,7 @@ body {
 
 @keyframes blink-caret {
     from, to { border-color: transparent }
-    50% { border-color: #00ffff; }
+    50% { border-color: transparent; }
 }
 
 .glow-text {

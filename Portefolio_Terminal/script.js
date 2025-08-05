@@ -60,11 +60,13 @@ document.addEventListener('DOMContentLoaded', function() {
                         <div class="ml-4">
                             <h3 class="text-cyan-400 font-bold mb-2">Bachelor's in Computer Engineering</h3>
                             <p class="text-gray-300 mb-1">Polytechnic Institute of Leiria - School of Technology and Management</p>
-                            <p class="text-gray-400 text-sm mb-3">2020 - Present | NQF Level 6</p>
+                            <p class="text-gray-400 text-sm mb-3">Present | NQF Level 6</p>
+                            <p class="text-gray-400 text-sm mb-3">Portugal | Leiria | <a href="https://www.ipleiria.pt/curso/licenciatura-em-engenharia-informatica/" class="text-cyan-400 hover:underline" target="_blank">ipleiria.pt</a></p>
                             
                             <h3 class="text-cyan-400 font-bold mb-2">Vocational Course in IT Equipment Technician and Management</h3>
                             <p class="text-gray-300 mb-1">Instituto dos Pupilos do Exército</p>
                             <p class="text-gray-400 text-sm">NQF Level 4</p>
+                            <p class="text-gray-400 text-sm mb-3">Portugal | Lisboa | <a href="https://pupilos.pt/" class="text-cyan-400 hover:underline" target="_blank">pupilos.pt</a></p>
                         </div>
                     </div>
                 `;
@@ -140,46 +142,38 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                 `;
             }
-        },
-        theme: {
-            description: "Change terminal theme",
-            execute: () => {
-                return `
-                    <div class="mb-4">
-                        <div class="text-green-400">$ theme</div>
-                        <div class="ml-4">
-                            <p class="text-gray-300 mb-2">Available themes:</p>
-                            <div class="flex flex-wrap gap-2">
-                                <button class="px-3 py-1 bg-cyan-600 rounded text-white" onclick="changeTheme('cyan')">Cyber</button>
-                                <button class="px-3 py-1 bg-green-600 rounded text-white" onclick="changeTheme('green')">Matrix</button>
-                                <button class="px-3 py-1 bg-purple-600 rounded text-white" onclick="changeTheme('purple')">Synthwave</button>
-                                <button class="px-3 py-1 bg-red-600 rounded text-white" onclick="changeTheme('red')">Retro</button>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            }
         }
     };
     
-    // Handle command input
-    commandInput.addEventListener('keydown', function(e) {
+    // Function to execute commands
+    function executeCommand(command) {
+        const cmd = command.toLowerCase().trim();
+        
+        // Add command to output
+        //const commandLine = `<div class="text-green-400 mb-2">$ ${command}</div>`;
+        //commandOutput.innerHTML += commandLine;
+        
+        if (commands[cmd]) {
+            const result = commands[cmd].execute();
+            commandOutput.innerHTML += result;
+        } else if (cmd === 'clear') {
+            commandOutput.innerHTML = '';
+        } else if (cmd === '') {
+            // Do nothing for empty command
+        } else {
+            commandOutput.innerHTML += `<div class="text-red-400 mb-4">Command not found: ${cmd}. Type 'help' for available commands.</div>`;
+        }
+        
+        // Scroll to bottom
+        terminalContent.scrollTop = terminalContent.scrollHeight;
+    }
+    
+    // Event listener for Enter key
+    commandInput.addEventListener('keypress', function(e) {
         if (e.key === 'Enter') {
-            const command = commandInput.value.trim().toLowerCase();
-            commandInput.value = '';
-            
-            // Display the command
-            commandOutput.innerHTML += `<div class="text-green-400">$ ${command}</div>`;
-            
-            // Execute command or show error
-            if (commands[command]) {
-                commandOutput.innerHTML += commands[command].execute();
-            } else if (command) {
-                commandOutput.innerHTML += `<div class="ml-4 text-red-400">Command not found: ${command}. Type 'help' for available commands.</div>`;
-            }
-            
-            // Scroll to bottom
-            terminalContent.scrollTop = terminalContent.scrollHeight;
+            const command = commandInput.value;
+            executeCommand(command);
+            commandInput.value = ''; // Clear input
         }
     });
     
@@ -188,26 +182,3 @@ document.addEventListener('DOMContentLoaded', function() {
         commandInput.focus();
     });
 });
-
-// Theme changer function
-function changeTheme(color) {
-    const terminal = document.querySelector('.terminal');
-    const glowText = document.querySelectorAll('.glow-text');
-    const skillBars = document.querySelectorAll('.skill-bar');
-    
-    // Remove all color classes
-    const colors = ['cyan', 'green', 'purple', 'red'];
-    colors.forEach(c => {
-        terminal.classList.remove(`border-${c}-400`, `border-${c}-500`, `shadow-${c}-500`);
-        glowText.forEach(el => el.classList.remove(`text-${c}-400`, `glow-text-${c}`));
-    });
-    
-    // Add new color classes
-    terminal.classList.add(`border-${color}-400`, `shadow-${color}-500`);
-    glowText.forEach(el => el.classList.add(`text-${color}-400`, `glow-text-${color}`));
-    
-    // Update skill bars
-    skillBars.forEach(bar => {
-        bar.style.background = `linear-gradient(90deg, var(--tw-${color}-400), var(--tw-${color}-600))`;
-    });
-}
