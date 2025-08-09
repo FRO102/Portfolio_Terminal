@@ -1,71 +1,293 @@
-@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600;700&display=swap');
+
+:root {
+    --terminal-bg: rgba(0, 0, 0, 0.95);
+    --terminal-border: rgba(0, 255, 255, 0.3);
+    --terminal-glow: rgba(0, 255, 255, 0.2);
+    --text-primary: #f0f0f0;
+    --text-secondary: #a0a0a0;
+    --accent-cyan: #00ffff;
+    --accent-green: #00ff00;
+    --accent-yellow: #ffff00;
+}
+
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent-cyan) transparent;
+}
+
+*::-webkit-scrollbar {
+    width: 8px;
+}
+
+*::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: var(--accent-cyan);
+    border-radius: 4px;
+}
 
 body {
-    font-family: 'Source Code Pro', monospace;
-    background-color: #1a1a1a;
-    color: #f0f0f0;
+    font-family: 'JetBrains Mono', 'Source Code Pro', monospace;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
+    color: var(--text-primary);
     overflow-x: hidden;
+    position: relative;
+}
+
+/* Matrix rain effect */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle at 20% 80%, rgba(0, 255, 255, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(0, 255, 255, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(0, 255, 255, 0.03) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: -1;
 }
 
 .terminal {
-    background-color: rgba(0, 0, 0, 0.85);
-    border-radius: 8px;
-    box-shadow: 0 0 30px rgba(0, 255, 255, 0.2);
-    border: 1px solid rgba(0, 255, 255, 0.3);
+    background: var(--terminal-bg);
+    border-radius: 12px;
+    box-shadow: 
+        0 0 50px var(--terminal-glow),
+        0 0 100px rgba(0, 255, 255, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--terminal-border);
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+}
+
+.terminal::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        45deg,
+        transparent 30%,
+        rgba(0, 255, 255, 0.02) 50%,
+        transparent 70%
+    );
+    pointer-events: none;
 }
 
 .title-bar {
-    background: linear-gradient(to right, #333333, #222222);
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-}
-
-@keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
+    background: linear-gradient(135deg, #333333 0%, #222222 50%, #1a1a1a 100%);
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+    position: relative;
 }
 
 .command-line {
-    background-color: rgba(0, 0, 0, 0.3);
-    border-radius: 4px;
+    background: linear-gradient(90deg, rgba(0, 255, 255, 0.05) 0%, transparent 100%);
+    border-radius: 6px;
+    border: 1px solid rgba(0, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.command-line:focus-within {
+    border-color: var(--accent-cyan);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
 }
 
 .typewriter {
     overflow: hidden;
-    border-right: 2px solid #00ffff;
+    border-right: 2px solid var(--accent-cyan);
     white-space: nowrap;
-    animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+    animation: typing 4s steps(50, end), fade-out-caret 4s ease-out forwards;
 }
 
 @keyframes typing {
-    from { width: 0 }
-    to { width: 100% }
+    0% { width: 0; }
+    90% { width: 100%; }
+    100% { width: 100%; }
 }
 
-@keyframes blink-caret {
-    from, to { border-color: transparent }
-    50% { border-color: transparent; }
+@keyframes fade-out-caret {
+    0%, 85% { border-color: var(--accent-cyan); }
+    86%, 90% { border-color: transparent; }
+    91%, 95% { border-color: var(--accent-cyan); }
+    96%, 100% { border-color: transparent; }
 }
 
 .glow-text {
-    text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff;
+    text-shadow: 
+        0 0 5px currentColor,
+        0 0 10px currentColor,
+        0 0 20px currentColor;
 }
 
 .skill-bar {
-    background: linear-gradient(90deg, #00ffff, #0088ff);
-    height: 6px;
-    border-radius: 3px;
+    background: linear-gradient(90deg, var(--accent-cyan), #0088ff);
+    height: 8px;
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+}
+
+.skill-bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    animation: shine 2s infinite;
+}
+
+@keyframes shine {
+    0% { left: -100%; }
+    100% { left: 100%; }
 }
 
 .badge {
     display: inline-block;
-    padding: 0.25em 0.4em;
-    font-size: 75%;
-    font-weight: 700;
+    padding: 0.4em 0.8em;
+    font-size: 85%;
+    font-weight: 600;
     line-height: 1;
     text-align: center;
     white-space: nowrap;
     vertical-align: baseline;
-    border-radius: 0.25rem;
-    background-color: #2d3748;
+    border-radius: 6px;
+    background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.badge:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 255, 255, 0.3);
+    border-color: var(--accent-cyan);
+}
+
+.badge::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.badge:hover::before {
+    left: 100%;
+}
+
+/* Command animations */
+.command-enter {
+    animation: slideInLeft 0.3s ease-out;
+}
+
+.command-output {
+    animation: fadeInUp 0.5s ease-out;
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Loading animation */
+.loading {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border: 2px solid transparent;
+    border-top: 2px solid var(--accent-cyan);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .terminal {
+        border-radius: 8px;
+        margin: 0.5rem;
+    }
+    
+    .title-bar {
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+    }
+    
+    .badge {
+        font-size: 80%;
+        padding: 0.3em 0.6em;
+    }
+}
+
+/* Custom focus styles */
+input:focus {
+    outline: none;
+}
+
+/* Selection styles */
+::selection {
+    background-color: rgba(0, 255, 255, 0.3);
+    color: white;
+}
+
+/* Link hover effects */
+a {
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+a:hover {
+    text-shadow: 0 0 8px currentColor;
+}
+
+a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: currentColor;
+    transition: width 0.3s ease;
+}
+
+a:hover::after {
+    width: 100%;
 }
