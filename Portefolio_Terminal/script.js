@@ -309,4 +309,38 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('focus', () => {
         setTimeout(setInitialFocus, 50);
     });
+    
+    // Seleciona o botão fullscreen
+    const fullscreenBtn = document.getElementById('fullscreen-btn');
+
+    // Função para alternar fullscreen
+    function toggleFullscreen() {
+        const terminal = document.querySelector('.terminal');
+        if (!document.fullscreenElement) {
+            if (terminal.requestFullscreen) {
+                terminal.requestFullscreen();
+            } else if (terminal.webkitRequestFullscreen) {
+                terminal.webkitRequestFullscreen();
+            } else if (terminal.mozRequestFullScreen) {
+                terminal.mozRequestFullScreen();
+            } else if (terminal.msRequestFullscreen) {
+                terminal.msRequestFullscreen();
+            }
+        } else {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.webkitExitFullscreen) {
+                document.webkitExitFullscreen();
+            } else if (document.mozCancelFullScreen) {
+                document.mozCancelFullScreen();
+            } else if (document.msExitFullscreen) {
+                document.msExitFullscreen();
+            }
+        }
+    }
+
+    // Adiciona o evento ao botão
+    if (fullscreenBtn) {
+        fullscreenBtn.addEventListener('click', toggleFullscreen);
+    }
 });
