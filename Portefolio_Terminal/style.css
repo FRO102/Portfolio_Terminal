@@ -4,11 +4,7 @@
     --terminal-bg: rgba(0, 0, 0, 0.95);
     --terminal-border: rgba(0, 255, 255, 0.3);
     --terminal-glow: rgba(0, 255, 255, 0.2);
-    --text-primary: #f0f0f0;
-    --text-secondary: #a0a0a0;
     --accent-cyan: #00ffff;
-    --accent-green: #00ff00;
-    --accent-yellow: #ffff00;
 }
 
 * {
@@ -122,13 +118,6 @@ body::before {
     96%, 100% { border-color: transparent; }
 }
 
-.glow-text {
-    text-shadow: 
-        0 0 5px currentColor,
-        0 0 10px currentColor,
-        0 0 20px currentColor;
-}
-
 .skill-bar {
     background: linear-gradient(90deg, var(--accent-cyan), #0088ff);
     height: 8px;
@@ -168,6 +157,7 @@ body::before {
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
+    color: rgb(192, 193, 199);
 }
 
 .badge:hover {

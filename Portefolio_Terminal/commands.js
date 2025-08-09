@@ -14,8 +14,8 @@ class TerminalCommands {
             education: "Show academic background", 
             contact: "Show contact information",
             cv: "Download CV in PDF format",
-            clear: "Clear the terminal screen",
-            whoami: "Display current user information"
+            clear: "Clear the terminal screen"
+            // REMOVIDO: whoami: "Display current user information"
         };
         
         let helpText = `

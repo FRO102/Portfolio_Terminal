@@ -14,10 +14,17 @@ const portfolioData = {
         passion: "System administration, services and infrastructure",
         focus: "Efficient solutions and continuous learning",
         languages: "Portuguese (native), English (B1)",
-        traits: ["Team Player", "Quick Learner", "Problem Solver", "Detail-Oriented"],
+         traits: [
+            "Hardware Repair Specialist", 
+            "Free/Open Source Advocate", 
+            "Performance Optimizer", 
+            "Security-Conscious", 
+            "Home Lab Enthusiast",
+            "Self-Taught Problem Solver"
+        ],
         cv: {
             filename: "Frederico_Oliveira_CV.pdf",
-            path: "./assets/cv/Frederico_Oliveira_CV.pdf"
+            path: "./assets/Frederico_Oliveira_CV.pdf"
         }
     },
     
@@ -92,7 +99,7 @@ const portfolioData = {
             gradient: "from-blue-900 to-purple-900"
         },
         {
-            title: "Vocational Course in IT Equipment Technician",
+            title: "Professional Course in IT Equipment Technician",
             institution: "Instituto dos Pupilos do Exército", 
             status: "Completed",
             level: "NQF Level 4",

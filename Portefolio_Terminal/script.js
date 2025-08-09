@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
     updateSessionTime();
     setInterval(updateSessionTime, 1000);
     
-    // Commands object
+    // Commands object (REMOVIDO: whoami)
     const commands = {
         help: {
             description: "Show available commands",
@@ -59,11 +59,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 commandOutput.innerHTML = '';
                 return '';
             }
-        },
-        whoami: {
-            description: "Display current user information",
-            execute: () => terminalCommands.whoami()
         }
+        // REMOVIDO: whoami command
     };
     
     // Event listeners
