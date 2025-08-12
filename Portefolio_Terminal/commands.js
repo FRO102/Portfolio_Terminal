@@ -15,24 +15,27 @@ class TerminalCommands {
             contact: "Show contact information",
             cv: "Download CV in PDF format",
             clear: "Clear the terminal screen"
-            // REMOVIDO: whoami: "Display current user information"
         };
-        
+
         let helpText = `
             <div class="mb-4 command-output">
                 <div class="text-green-400">visitor@portfolio:~$ help</div>
                 <div class="ml-4">
                     <p class="text-cyan-400 mb-3 font-bold">📋 Available Commands:</p>
                     <div class="space-y-2">`;
-        
+
         Object.entries(commandList).forEach(([cmd, desc]) => {
             helpText += `
-                <div class="flex items-start space-x-4 p-2 rounded bg-gray-800 bg-opacity-30">
-                    <span class="text-yellow-400 font-mono font-bold min-w-fit">${cmd}</span>
+                <button 
+                    class="bg-gray-800 hover:bg-cyan-700 text-yellow-400 font-mono font-bold min-w-fit px-3 py-2 rounded transition-colors flex items-center space-x-4 mb-2"
+                    onclick="document.getElementById('command-input').value='${cmd}';document.getElementById('command-input').dispatchEvent(new KeyboardEvent('keydown', {key:'Enter'}));"
+                    type="button"
+                >
+                    <span>${cmd}</span>
                     <span class="text-gray-300 text-sm flex-1">${desc}</span>
-                </div>`;
+                </button>`;
         });
-        
+
         helpText += `
                     </div>
                     <div class="mt-4 p-3 bg-blue-900 bg-opacity-30 rounded border-l-4 border-blue-400">
